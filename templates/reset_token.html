@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Réinitialiser le mot de passe{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Réinitialiser le mot de passe</h2>
+    <form action="{{ url_for('reset_token', token=token) }}" method="post">
+        <div class="form-group">
+            <label for="password">Nouveau mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Mettre à jour le mot de passe</button>
+    </form>
+</div>
+{% endblock %}

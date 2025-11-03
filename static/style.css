@@ -1,0 +1,75 @@
+
+body {
+    background-color: #f0f2f5; /* Couleur de fond douce */
+}
+
+
+
+.form-container-wrapper {
+    margin-top: 70px; /* Ajoute une marge de 50 pixels au-dessus du conteneur */
+    padding: 20px;
+    background-color: #ffffff; /* Fond blanc pour le contenu principal */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* En-tête de la page */
+h2 {
+    color: #333;
+    border-bottom: 2px solid #007bff; /* Bordure sous le titre */
+    padding-bottom: 10px;
+}
+
+/* Style de la table */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Fusionner les bordures des cellules */
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Style de l'en-tête de la table */
+thead th {
+    background-color: #007bff; /* Couleur de fond bleue pour l'en-tête */
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px 15px;
+    letter-spacing: 0.5px;
+}
+
+/* Style du corps de la table */
+tbody tr {
+    border-bottom: 1px solid #dee2e6; /* Bordure inférieure pour chaque ligne */
+}
+
+/* Lignes alternées (effet zèbre) pour une meilleure lisibilité */
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa; /* Couleur de fond gris clair pour les lignes paires */
+}
+
+/* Effet au survol des lignes */
+tbody tr:hover {
+    background-color: #e9ecef; /* Changement de couleur au survol */
+    cursor: pointer;
+}
+
+/* Style des cellules de données */
+td {
+    padding: 12px 15px;
+    color: #555;
+    text-align: center;
+}
+
+/* Style des boutons dans le tableau */
+td .btn {
+    margin-right: 5px;
+}
+
+/* Style du message d'information */
+.alert-info {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.1em;
+}
+

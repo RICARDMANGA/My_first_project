@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}À propos de nous{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+            <h2>À propos de notre application</h2>
+            <p class="lead">
+                Cette application a été conçue pour gérer vos contacts de manière simple et efficace.
+            </p>
+            <p>
+                L'application a été développée avec le framework web <strong>Flask</strong>, en utilisant
+                <strong>MongoDB</strong> comme base de données, et en intégrant des fonctionnalités
+                avancées comme la gestion des utilisateurs, les connexions sécurisées via `flask-bcrypt`
+                et `flask-login`, ainsi que la gestion des rôles.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

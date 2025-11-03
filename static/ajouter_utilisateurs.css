@@ -1,0 +1,91 @@
+/* --- Conteneur et Apparence Générale --- */
+
+/* Applique un style de "carte" moderne et une animation d'entrée */
+.container.mt-5 {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    /* CHANGEMENT DE COULEUR ICI */
+    background-color: #f8f9fa; 
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* Une ombre plus douce */
+    /* Animation d'entrée */
+    animation: fadeInScale 0.6s ease-out forwards;
+    opacity: 0; /* Initialement masqué */
+}
+
+
+
+/* Keyframes pour l'animation d'entrée */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Style pour les titres */
+h2, h4 {
+    color: #007bff; /* Couleur primaire Bootstrap */
+    border-bottom: 2px solid #e9ecef; /* Une ligne de séparation douce */
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+h4 {
+    font-size: 1.25rem;
+    color: #28a745; /* Une couleur différente pour la section mot de passe */
+}
+
+/* --- Éléments du Formulaire --- */
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Transitions fluides pour les inputs et selects */
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Effet de focus dynamique (mise en surbrillance) */
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none; /* Supprime le contour par défaut du navigateur */
+    background-color: #ffffff; /* Le champ redevient blanc au focus pour un meilleur contraste */
+}
+
+/* --- Boutons d'Action --- */
+
+/* Style pour le bouton principal "Mettre à jour" */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    padding: 10px 20px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px); /* Un léger effet de "pop up" au survol */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+/* Style pour le bouton secondaire "Annuler" */
+.btn-secondary {
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
