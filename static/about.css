@@ -1,0 +1,46 @@
+/* Styles généraux pour le corps */
+body {
+    background-color: #f4f4f4;
+    color: #333333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Styles pour le conteneur principal */
+.container.mt-5 {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-top: 50px !important; /* Force le margin-top de Bootstrap */
+    max-width: 95%;
+}
+
+
+
+/* Styles pour le titre h2 */
+h2 {
+    color: #007bff; /* Couleur bleue Bootstrap primaire */
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+/* Styles pour le paragraphe principal (lead) */
+p.lead {
+    font-size: 1.15rem;
+    color: #555;
+}
+
+/* Styles pour les images du carrousel pour s'assurer qu'elles ont une hauteur fixe */
+.carousel-item img {
+    max-height: 320px; /* Limite la hauteur maximale des images */
+    object-fit: cover; /* Recadre l'image pour couvrir la zone sans la déformer */
+    border-radius: 8px;
+}
+
+/* Un peu de marge en bas du carrousel */
+#carouselExampleSlidesOnly {
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+

@@ -1,0 +1,79 @@
+/* Définition des variables CSS pour un thème facile à modifier */
+:root {
+    --primary-color: #007bff; /* Bleu standard */
+    --background-color: #e9ecef; /* Gris clair pour le fond */
+    --card-bg: #ffffff;        /* Fond de carte blanc */
+    --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Ombre douce */
+}
+
+/* Styles pour le corps de la page */
+body {
+    background-color: var(--background-color);
+    /* Utilise Flexbox pour centrer le contenu de la page verticalement */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* S'assure que le body prend toute la hauteur de la fenêtre */
+    margin: 0;
+    /* Suppression du min-vh-200 de votre HTML qui rend la page trop longue */
+}
+
+/* Styles pour le conteneur principal */
+.container {
+    /* Marge supérieure retirée car on utilise Flexbox pour centrer */
+    margin-top: 0 !important; 
+}
+
+/* Styles pour la carte de connexion */
+.card {
+    border: none;
+    border-radius: 15px; /* Arrondir les coins */
+    box-shadow: var(--shadow);
+    background-color: var(--card-bg);
+    overflow: hidden; /* Assure que le header arrondi reste dans la carte */
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-bottom: none;
+    padding: 20px 30px;
+    /* Arrondir seulement le haut de la carte */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.card-header h3 {
+    margin: 10px;
+    font-weight: 500;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+/* Styles pour les labels et inputs */
+.form-group label {
+    font-weight: 800;
+    margin-bottom: 8px;
+    display: block; /* S'assurer que le label prend toute la largeur */
+}
+
+/* Personnalisation du bouton principal */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Bleu plus foncé au survol */
+    border-color: #0056b3;
+    transform: translateY(-2px); /* Petit effet dynamique au survol */
+}
+
+/* Styles pour les messages d'alerte */
+.alert {
+    border-radius: 5px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,170 @@
+/* Variables CSS pour un thème facile */
+        :root {
+            --primary-color: #007bff;
+            --background-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --error-color: #dc3545;
+            --success-color: #28a745;
+        }
+
+        /* Styles de base du corps de la page */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 90vh;
+        }
+
+        /* Conteneur principal pour centrer le contenu */
+        /* .container {
+            max-width: 500px;
+            width: 100%;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+             padding-right: 30px;
+        } */
+
+        .container.mt-5 {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* Une ombre plus douce */
+            /* Animation d'entrée */
+            animation: fadeInScale 0.6s ease-out forwards;
+            opacity: 0; /* Initialement masqué */
+            }
+
+            /* Keyframes pour l'animation d'entrée */
+        @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+            }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+        }
+
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 0.5rem;
+            margin-bottom: 20px;
+             padding-left: 30px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #6c757d;
+            font-style: italic;
+            padding-left: 30px;
+        }
+
+        /* Styles des messages flash (alertes) */
+        .flashes {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .flashes li {
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Classes spécifiques pour les catégories flash (doivent être passées par Flask) */
+        .flashes li.error, .flashes li.danger {
+            background-color: #f8d7da;
+            border: 1px solid var(--error-color);
+            color: var(--error-color);
+        }
+
+        .flashes li.success {
+            background-color: #d4edda;
+            border: 1px solid var(--success-color);
+            color: var(--success-color);
+        }
+
+        /* Styles du formulaire */
+        form div {
+            margin-bottom: 15px;
+             padding-left: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        input[type="password"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* S'assure que le padding n'augmente pas la largeur */
+            font-size: 1rem;
+        }
+
+        input[type="password"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            margin-left: 30px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-top: 10px;
+            display: inline-block;
+            padding-left: 30px;
+
+            margin-left: 30px;
+            
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #5a6268;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: white;
+        } */
+
+        .btn-secondary {
+            transition: background-color 0.3s ease;
+            margin-left: 30px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
