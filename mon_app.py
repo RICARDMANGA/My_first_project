@@ -78,12 +78,17 @@ from bson import ObjectId
 from flask_login import login_required, current_user # Pour la sécurité
 from functools import wraps
 import re
+from flask_wtf.csrf import CSRFProtect
+from flask_login import login_required, current_user 
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'votre_cle_secrete_ultra_securisee_ici'
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
+
+csrf = CSRFProtect(app) 
 
 client = MongoClient('localhost', 27017)
 db = client['Gestion_contacts']
@@ -275,7 +280,50 @@ def forgot_password():
             flash('Informations incorrectes. Veuillez réessayer.', 'danger')
             
     return render_template('forgot_password.html')
+# --- NOUVELLE ROUTE : Réinitialisation par l'administrateur ---
 
+@app.route('/reset_password_admin/<user_id>', methods=['GET', 'POST'])
+@login_required
+@admin_required # Seuls les administrateurs peuvent y accéder
+def reset_password_admin(user_id):
+    utilisateur = collection_utilisateurs.find_one({'_id': ObjectId(user_id)})
+    
+    if not utilisateur:
+        flash('Utilisateur non trouvé.', 'danger')
+        # Rediriger vers la liste des utilisateurs si elle existe
+        return redirect(url_for('liste_utilisateurs')) 
+    
+    # Empêcher un admin de réinitialiser son propre mot de passe via cet outil
+    if str(current_user.get_id()) == user_id:
+        flash('Vous ne pouvez pas réinitialiser votre propre mot de passe via l\'interface administrateur.', 'warning')
+        return redirect(url_for('liste_utilisateurs'))
+
+    if request.method == 'POST':
+        new_password = request.form['new_password']
+        
+        if not new_password:
+            flash('Le mot de passe ne peut pas être vide.', 'danger')
+            return render_template('renitialiser_mot_de_pass_utilisateur.html', utilisateur=utilisateur)
+
+        hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+        
+        # Mettre à jour le mot de passe et définir le flag pour forcer le changement à la prochaine connexion
+        collection_utilisateurs.update_one(
+            {'_id': ObjectId(user_id)},
+            {'$set': {
+                'password': hashed_password,
+                'password_reset_required': True # Force l'utilisateur à changer ce mot de passe temporaire
+            }}
+        )
+        
+        flash(f"Le mot de passe de l'utilisateur {utilisateur['username']} a été réinitialisé. Il devra le changer à sa prochaine connexion.", 'success')
+        # Rediriger vers la liste des utilisateurs si elle existe
+        return redirect(url_for('liste_utilisateurs')) 
+
+    # Afficher le formulaire GET
+    return render_template('renitialiser_mot_de_pass_utilisateur.html', utilisateur=utilisateur)
+
+# --- FIN NOUVELLE ROUTE ADMIN ---
 
 # ... (votre code existant) ...
 
@@ -337,6 +385,12 @@ def logout():
 def about():
     """Route pour afficher la page À propos."""
     return render_template('about.html')
+
+
+@app.route('/profile')
+@login_required # S'assure que seul un utilisateur connecté peut accéder à cette page
+def profile():
+    return render_template('profile.html')
 
 # ... (votre code existant) ...
 
