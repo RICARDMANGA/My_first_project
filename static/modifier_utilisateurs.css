@@ -1,5 +1,15 @@
 /* --- Conteneur et Apparence Générale --- */
-
+body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 20px 10px ;
+        display: flex;
+        justify-content: center;
+           
+        min-height: 90vh;
+    }
 /* Applique un style de "carte" moderne et une animation d'entrée */
 .container.mt-5 {
     max-width: 600px;
