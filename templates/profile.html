@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Détails du profil
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nom d'utilisateur: {{ current_user.user_data.username }}</h5>
+                    <p class="card-text">Rôle: 
+                        {% if current_user.is_admin %}
+                            <span class="badge bg-danger">Administrateur</span>
+                        {% else %}
+                            <span class="badge bg-info">Utilisateur Standard</span>
+                        {% endif %}
+                    </p>
+                    <!-- Ajoutez d'autres détails ici si vous les stockez dans MongoDB -->
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('about') }}" class="btn btn-secondary">Retour</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

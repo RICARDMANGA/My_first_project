@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, install-scale=1.0">
+
+     <link rel="stylesheet" href="{{ url_for('static', filename='renitialiser_mot_de_pass_utilisateur.css') }}"> 
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+   
+    <title>Réinitialiser le mot de passe de {{ utilisateur.username }}</title>
+</head>
+<body>
+        
+
+     <div class="container mt-5">
+        <h1>Réinitialiser le mot de passe pour : {{ utilisateur.username }}</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <p>
+            Attention : L'utilisateur sera contraint de définir un nouveau mot de passe de son choix 
+            lors de sa prochaine connexion.
+        </p>
+
+        <form method="POST" action="{{ url_for('reset_password_admin', user_id=utilisateur._id) }}">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+            <div>
+                <label for="new_password">Définir un mot de passe temporaire :</label>
+                <input type="password" id="new_password" name="new_password" required>
+            </div>
+            
+            <button type="submit">Réinitialiser le mot de passe</button>
+        </form>
+
+        <a href="{{ url_for('liste_utilisateurs') }}" class="btn btn-secondary mt-3">Annuler</a>
+    </div>
+</body>
+</html>
