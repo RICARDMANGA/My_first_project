@@ -130,6 +130,11 @@
               (Résultats pour "{{ terme_recherche }}")
             {% endif %}
         </h2>
+            <form class="d-flex" role="search" method="get" action="{{ url_for('afficher_donnees') }}">
+    <input class="form-control me-2" id="searchInput" type="search" placeholder="Rechercher par prénom..." aria-label="Search" name="search_query"/>
+    <button class="btn btn-outline-success" type="submit">Rechercher</button>
+</form>
+
         <a href="{{ url_for('ajouter') }}" class="btn btn-success">Ajouter un contact</a>
     </div>
 

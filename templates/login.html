@@ -1,8 +1,23 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <!-- Méta-tags essentiels -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Votre fichier CSS personnalisé doit venir après Bootstrap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 
 
-{% extends "base.html" %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-{% block title %}Connexion{% endblock %}
+
+</head>
+<body class="d-flex flex-column">
+
+
+
+
 
 {% block content %}
 <div class="container mt-5">
@@ -21,6 +36,7 @@
                         {% endif %}
                     {% endwith %}
                     <form action="{{ url_for('login') }}" method="post">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <div class="form-group">
                             <label for="username">Nom d'utilisateur</label>
                             <input type="text" class="form-control" id="username" name="username" required>
@@ -42,3 +58,7 @@
     </div>
 </div>
 {% endblock %}
+
+
+</body>
+</html>

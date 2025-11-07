@@ -1,22 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, install-scale=1.0">
+   <link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>À propos</title>
+</head>
+<body>
+
+
 {% extends "base.html" %}
 
 {% block title %}À propos de nous{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-8 offset-md-2 text-center">
-            <h2>À propos de notre application</h2>
-            <p class="lead">
-                Cette application a été conçue pour gérer vos contacts de manière simple et efficace.
-            </p>
-            <p>
-                L'application a été développée avec le framework web <strong>Flask</strong>, en utilisant
-                <strong>MongoDB</strong> comme base de données, et en intégrant des fonctionnalités
-                avancées comme la gestion des utilisateurs, les connexions sécurisées via `flask-bcrypt`
-                et `flask-login`, ainsi que la gestion des rôles.
-            </p>
-        </div>
+<div class="container-fluid">
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{ url_for('static', filename='images/base-de-donnees-client.jpeg') }}" class="d-block w-100" alt="...">
     </div>
+    <div class="carousel-item">
+      <img src="{{ url_for('static', filename='images/images2.jpg') }}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{{ url_for('static', filename='images/images3.jpeg') }}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+
+<!-- CONTENEUR PRINCIPAL AVEC LA STRUCTURE DE GRILLE INVERSÉE -->
+    <div class="container mt-5">
+        
+        <!-- Début de la ligne pour aligner les éléments côte à côte -->
+        <div class="row"> 
+            
+            <!-- NOUVEL ORDRE : Première colonne (gauche) pour la carte de profil (4 colonnes) -->
+            <div class="col-md-4">
+                {% if current_user.is_authenticated %}
+                <div class="card my-4 p-4 shadow-sm">
+                    
+                    <h3 class="card-title">Votre Profil</h3>
+                    <p class="card-text">
+                        Bienvenue, <strong>{{ current_user.user_data.username }}</strong> !
+                    </p>
+                    <p class="card-text">
+                        Statut : 
+                        {% if current_user.is_admin %}
+                            <span class="badge bg-danger">Administrateur</span>
+                        {% else %}
+                            <span class="badge bg-info">Utilisateur Standard</span>
+                        {% endif %}
+                    </p>
+                    <a href="{{ url_for('profile') }}" class="btn btn-primary mt-2">Voir mon profil complet</a>
+                </div>
+                {% endif %}
+            </div> 
+            <!-- Fin de la colonne de gauche (profil) -->
+
+            
+            <!-- NOUVEL ORDRE : Deuxième colonne (droite) pour le texte "À propos" (8 colonnes) -->
+            <div class="col-md-8 text-start">
+                <h2>À propos de notre application</h2>
+                <p class="lead">
+                    Cette application a été conçue pour gérer vos contacts de manière simple et efficace.
+                </p>
+                <p>
+                    L'application a été développée avec le framework web <strong>Flask</strong>, en utilisant
+                    <strong>MongoDB</strong> comme base de données, et en intégrant des fonctionnalités
+                    avancées comme la gestion des utilisateurs, les connexions sécurisées via `flask-bcrypt`
+                    et `flask-login`, ainsi que la gestion des rôles.
+                </p>
+            </div>
+            <!-- Fin de la colonne de droite (texte) -->
+            
+        </div>
+        <!-- Fin de la ligne -->
+    </div>
+    <!-- FIN DU CONTENEUR PRINCIPAL -->
 </div>
 {% endblock %}
+
+
+</body>
+</html>

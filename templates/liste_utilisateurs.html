@@ -43,6 +43,8 @@
                     <td>{{ utilisateur._id }}</td>
                     <td>
                         <a href="{{ url_for('modifier_utilisateur', user_id=utilisateur._id) }}" class="btn btn-sm btn-info">Modifier</a>
+                        <a href="{{ url_for('reset_password_admin', user_id=utilisateur._id) }}" class="btn btn-success">Réinitialiser MP</a>
+
                          <a href="{{ url_for('supprimer_utilisateur', user_id=utilisateur._id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">Supprimer</a>
                     </td>
                 </tr>
