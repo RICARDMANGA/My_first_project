@@ -44,8 +44,12 @@
             <div class="col-md-4">
                 {% if current_user.is_authenticated %}
                 <div class="card my-4 p-4 shadow-sm">
+                     <img src="{{ url_for('static', filename=current_user.user_data.get('profile_image', 'images/default-avatar.png')) }}" 
+                         alt="Avatar de l'utilisateur" 
+                         class="profile-avatar mb-3"> 
                     
                     <h3 class="card-title">Votre Profil</h3>
+                    
                     <p class="card-text">
                         Bienvenue, <strong>{{ current_user.user_data.username }}</strong> !
                     </p>
@@ -57,6 +61,7 @@
                             <span class="badge bg-info">Utilisateur Standard</span>
                         {% endif %}
                     </p>
+                    
                     <a href="{{ url_for('profile') }}" class="btn btn-primary mt-2">Voir mon profil complet</a>
                 </div>
                 {% endif %}

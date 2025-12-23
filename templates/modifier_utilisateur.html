@@ -20,9 +20,14 @@
 <div class="container mt-5 ">
     <h2>Modifier l'utilisateur</h2>
     <form action="{{ url_for('modifier_utilisateur', user_id=utilisateur._id) }}" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <div class="form-group">
-            <label for="username">Nom d'utilisateur</label>
-            <input type="text" class="form-control" id="username" name="username" value="{{ utilisateur.username }}" required>
+            <label for="username">Prénom d'utilisateur</label>
+            <input type="text" class="form-control" id="username" name="username" value="{{ utilisateur.username }}" readonly required>
+        </div>
+        <div class="form-group">
+            <label for="nom">Nom d'utilisateur</label>
+            <input type="text" class="form-control" id="nom" name="nom" value="{{ utilisateur.nom }}" required>
         </div>
         <div class="form-group">
             <label for="role">Rôle</label>
@@ -31,12 +36,13 @@
                 <option value="admin" {% if utilisateur.role == 'admin' %}selected{% endif %}>Administrateur</option>
             </select>
         </div>
-        <hr>
+        <!-- <hr>
         <h4>Réinitialiser le mot de passe</h4>
         <div class="form-group">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <label for="password">Nouveau mot de passe (laissez vide pour ne pas changer)</label>
             <input type="password" class="form-control" id="password" name="password">
-        </div>
+        </div> -->
         <button type="submit" class="btn btn-primary mt-3">Mettre à jour l'utilisateur</button>
         <a href="{{ url_for('liste_utilisateurs') }}" class="btn btn-secondary mt-3">Annuler</a>
     </form>

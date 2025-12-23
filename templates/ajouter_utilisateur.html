@@ -3,13 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, install-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ url_for('static', filename='ajouter_utilisateurs.css') }}">
 
-        <title>Ajouter un Contact</title>
+        <title>Ajouter un Utilisateur</title>
     </head>
     <body>
-
 
 {% extends "base.html" %}
 
@@ -18,15 +17,21 @@
 {% block content %}
 <div class="container mt-5">
     <h2>Ajouter un Utilisateur</h2>
-    <form action="{{ url_for('ajouter_utilisateur') }}" method="post">
-         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <!-- IMPORTANT: Ajoutez enctype="multipart/form-data" ici -->
+    <form action="{{ url_for('ajouter_utilisateur') }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <div class="form-group">
-            <label for="username">Nom d'utilisateur</label>
-            <input type="text" class="form-control" id="username" name="username" required>
+            <label for="username">Prénom d'utilisateur</label>
+            <input type="text" class="form-control" placeholder="Prénom d'utilisateur" id="username" name="username" required>
         </div>
         <div class="form-group">
+            <label for="nom">Nom d'utilisateur</label>
+            <input type="text" class="form-control" placeholder="Nom d'utilisateur" id="nom" name="nom" required>
+        </div>
+        
+        <div class="form-group">
             <label for="password">Mot de passe</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <input type="password" class="form-control" placeholder="Mot de passe" id="password" name="password" required>
         </div>
         <div class="form-group">
             <label for="role">Rôle</label>
@@ -35,12 +40,18 @@
                 <option value="admin">Administrateur</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary mt-3">ajouter_utilisateur</button>
+        
+        <!-- NOUVEAU CHAMP DE TÉLÉCHARGEMENT D'IMAGE -->
+        <div class="form-group mt-3">
+            <label for="file">Photo de profil (Optionnel)</label>
+            <input class="form-control" type="file" id="file" name="file" accept="image/png, image/jpeg, image/gif">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Ajouter l'utilisateur</button>
         <a href="{{ url_for('liste_utilisateurs') }}" class="btn btn-secondary mt-3">Annuler</a>
     </form>
 </div>
 {% endblock %}
-
 
 </body>
 </html>

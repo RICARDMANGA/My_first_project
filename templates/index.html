@@ -123,6 +123,75 @@
 {% block title %}Liste des Contacts{% endblock %}
 
 {% block content %}
+
+<div class="form-container-wrapper">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Recherche Avancée de Contacts</h2>
+        
+        <!-- Optionnel: lien pour réinitialiser la recherche ou revenir à la liste complète -->
+        <a href="{{ url_for('afficher_donnees') }}" class="btn btn-secondary">Réinitialiser la recherche</a>
+    </div>
+
+    <!-- 
+      * Le formulaire de recherche :
+      *   - Utilise la méthode GET (les paramètres apparaissent dans l'URL).
+      *   - L'action pointe vers la route Flask 'rechercher' (à définir dans votre fichier app.py).
+    -->
+    <form method="GET" action="{{ url_for('recherche_avancee_resultats') }}">
+        
+        <div class="row g-3">
+            <!-- Champ Prénom (avec valeur pré-remplie si déjà recherché) -->
+            <div class="col-md-6">
+                <label for="prenom" class="form-label">Prénom :</label>
+                <!-- L'attribut 'value="{{ request.args.get('prenom', '') }}"' permet de garder le texte recherché affiché après l'envoi -->
+                <input type="text" id="prenom" name="prenom" class="form-control" 
+                       value="{{ request.args.get('prenom', '') }}">
+            </div>
+
+            <!-- Champ Nom (avec valeur pré-remplie si déjà recherché) -->
+            <div class="col-md-6">
+                <label for="nom" class="form-label">Nom :</label>
+                <input type="text" id="nom" name="nom" class="form-control"
+                       value="{{ request.args.get('nom', '') }}">
+            </div>
+
+            <!-- Champ Âge (avec valeur pré-remplie si déjà recherché) -->
+            <div class="col-md-6">
+                <label for="age" class="form-label">Âge (min) :</label>
+                <!-- On peut utiliser 'age' pour rechercher un âge spécifique ou 'age_min'/'age_max' pour un intervalle -->
+                <input type="number" id="age" name="age" class="form-control" min="0" max="120"
+                       value="{{ request.args.get('age', '') }}">
+            </div>
+
+            <!-- Champ Adresse (avec valeur pré-remplie si déjà recherché) -->
+            <div class="col-md-6">
+                <label for="address" class="form-label">Adresse (mot clé) :</label>
+                <input type="text" id="address" name="address" class="form-control"
+                       value="{{ request.args.get('address', '') }}">
+            </div>
+
+            <!-- Champ Téléphone (avec valeur pré-remplie si déjà recherché) -->
+            <div class="col-md-6">
+                <label for="telephone" class="form-label">Téléphone :</label>
+                <input type="tel" id="telephone" name="telephone" class="form-control"
+                       value="{{ request.args.get('telephone', '') }}">
+            </div>
+            
+            <!-- Bouton de soumission pour la recherche -->
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" >
+                    <i class="fas fa-search" ></i> Rechercher les contacts
+                </button>
+            </div>
+        </div>
+    </form>
+    
+</div>
+
+
+
+
+
 <div class="form-container-wrapper">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Liste des Contacts
@@ -136,6 +205,13 @@
 </form>
 
         <a href="{{ url_for('ajouter') }}" class="btn btn-success">Ajouter un contact</a>
+
+        <!-- Dans votre fichier index.html, ajoutez ceci près de votre formulaire de recherche -->
+       
+       <!-- lien qui affiche le fichier pdf -->
+        <a href="{{ url_for('afficher_pdf') }}" class="btn btn-primary"> Afficher les résultats du PDF (PDF) </a>
+    
+
     </div>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -166,14 +242,15 @@
                         <td>{{ item.get('Age', '') }}</td>
                         <td>{{ item.get('Address', '') }}</td>
                         <td>{{ item.get('Telephone', '') }}</td>
+                        
+                        
                         <td>
+                            <!-- <a href="{{ url_for('modifier_item', item_id=item._id) }}" class="btn btn-warning btn-sm">Modifier</a>
+                            <a href="{{ url_for('supprimer_document', id=item._id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce contact ?');">Supprimer</a> -->
+                            <!-- lien pour qui recupèrent les id -->
+                            <a href="{{ url_for('modifier_item', item_id=item.get('_id')) }}" class="btn btn-warning btn-sm">Modifier</a>
+                            <a href="{{ url_for('supprimer_document', id=item.get('_id')) }}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce contact ?');">Supprimer</a>
 
-                          <!-- <a href="{{ url_for('modifier_item', item_id=item.get('_id')) }}" class="btn btn-warning btn-sm">Modifier</a>
-            <a href="{{ url_for('supprimer_document', id=item.get('_id')) }}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce contact ?');">Supprimer</a>
-        </td>
-    </tr> -->
-                            <a href="{{ url_for('modifier_item', item_id=item._id) }}" class="btn btn-warning btn-sm">Modifier</a>
-                            <a href="{{ url_for('supprimer_document', id=item._id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce contact ?');">Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -189,6 +266,7 @@
         </div>
     {% endif %}
 </div>
+
 {% endblock %}
 
   

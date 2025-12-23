@@ -19,7 +19,7 @@
     <h1>Modifier un contact</h1>
      <form action="{{url_for('modifier_item', item_id=item._id)}}" method="post">  <!-- action et method sont des attributs importants -->
 
-
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
          <div class="form-group">
             <label for="prenom">Prenom :</label>
             <input type="text" id="prenom" name="prenom" value="{{item.Prenom}}" required> <br>

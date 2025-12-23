@@ -10,22 +10,47 @@
                 <div class="card-header">
                     Détails du profil
                 </div>
-                <div class="card-body">
+                <div class="card-body text-center">
+                    <!-- Affichage de l'image actuelle -->
+                    <img src="{{ url_for('static', filename=current_user.user_data.get('profile_image', 'images/default-avatar.png')) }}" 
+     alt="Avatar de l'utilisateur" 
+     class="profile-avatar mb-3"> 
+
                     <h5 class="card-title">Nom d'utilisateur: {{ current_user.user_data.username }}</h5>
-                    <p class="card-text">Rôle: 
-                        {% if current_user.is_admin %}
-                            <span class="badge bg-danger">Administrateur</span>
-                        {% else %}
-                            <span class="badge bg-info">Utilisateur Standard</span>
-                        {% endif %}
-                    </p>
-                    <!-- Ajoutez d'autres détails ici si vous les stockez dans MongoDB -->
+                    <p class="card-text">Rôle: {{ current_user.user_data.role }}</p>
+
+                    <!-- Formulaire de téléchargement d'image -->
+                    <hr>
+                    <form action="{{ url_for('upload_profile_pic') }}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_token() }} <!-- Assurez-vous d'avoir CSRFProtect configuré -->
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Changer de photo de profil</label>
+                            <input class="form-control" type="file" id="file" name="file" accept="image/png, image/jpeg, image/gif">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Télécharger l'image</button>
+                    </form>
+
                 </div>
                 <div class="card-footer">
-                    <a href="{{ url_for('about') }}" class="btn btn-secondary">Retour</a>
+                    <a href="{{ url_for('about') }}" class="btn btn-secondary">Retour à À propos</a>
                 </div>
-            </div>
+                <!-- Exemple dans templates/profile.html ou about.html -->
+<a href="{{ url_for('change_password') }}" class="btn btn-secondary mt-3">Changer le mot de passe</a>
+
+            </div> 
         </div>
     </div>
 </div>
+
+<!-- Ajoutez le CSS nécessaire dans votre fichier static/about.css ou style.css -->
+<style>
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #ddd;
+    }
+</style>
 {% endblock %}
