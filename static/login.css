@@ -19,13 +19,14 @@ body {
 }
 
 /* Styles pour le conteneur principal */
-.container {
+.container mt-5 {
     /* Marge supérieure retirée car on utilise Flexbox pour centrer */
     margin-top: 0 !important; 
 }
 
 /* Styles pour la carte de connexion */
 .card {
+   
     border: none;
     border-radius: 15px; /* Arrondir les coins */
     box-shadow: var(--shadow);
@@ -50,6 +51,8 @@ body {
 
 .card-body {
     padding: 30px;
+    background-color: greenyellow;
+     background-image: url('static/images/base-de-donnees-client.jpeg');
 }
 
 /* Styles pour les labels et inputs */
@@ -57,6 +60,10 @@ body {
     font-weight: 800;
     margin-bottom: 8px;
     display: block; /* S'assurer que le label prend toute la largeur */
+}
+
+.form-group input {
+    border-radius: 50px;
 }
 
 /* Personnalisation du bouton principal */

@@ -89,3 +89,11 @@ h4 {
 .btn-secondary:hover {
     background-color: #5a6268;
 }
+
+/* Libellés */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+}

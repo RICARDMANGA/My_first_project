@@ -13,6 +13,8 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+
+
 /* En-tête de la page */
 h2 {
     color: #333;
@@ -73,3 +75,55 @@ td .btn {
     font-size: 1.1em;
 }
 
+/* Dans static/list_utilisateur.css */
+
+/* Styles pour le conteneur flexbox dans la cellule */
+.user-display {
+    display: flex;       /* Active Flexbox */
+    align-items: center; /* Centre les éléments verticalement (image et texte) *2
+    gap: 10px;           /* Ajoute un espace de 10px entre l'image et le nom */
+}
+
+/* Styles pour l'image de l'avatar */
+.user-avatar {
+    width: 60px;          /* Taille fixe de l'image */
+    height: 60px;         /* Taille fixe de l'image */
+    border-radius: 70%;   /* Rend l'image ronde */
+    object-fit: cover;    /* S'assure que l'image couvre la zone sans déformation */
+    border: 2px solid #ddd;
+}
+
+/* /* Le reste de votre CSS précédent 
+.form-container-wrapper {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+} */
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+/* Réduire la taille de l'image de l'avatar dans la liste */
+.list-avatar {
+    width: 70px;  /* Définit la largeur de l'image à 40 pixels */
+    height: 70px; /* Définit la hauteur de l'image à 40 pixels (assure un format carré) */
+    border-radius: 50%; /* Donne une forme ronde à l'avatar */
+    object-fit: cover; /* Assure que l'image couvre toute la zone sans être déformée */
+    margin-right: 10px; /* Ajoute un espace entre l'image et le nom d'utilisateur */
+    border: 1px solid #ddd; /* Ajoute une petite bordure optionnelle */
+}
+
+/* Assurer un bon alignement vertical entre l'image et le texte */
+.user-display {
+    display: flex;
+    align-items: center; /* Aligne verticalement l'avatar et le nom d'utilisateur */
+}
+
+.username-text {
+    /* Style optionnel pour le texte du nom d'utilisateur */
+    font-weight: 900;
+    color: #333;
+}

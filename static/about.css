@@ -44,3 +44,12 @@ p.lead {
 }
 
 
+.profile-avatar {
+    width: 150px;         /* Définir la taille */
+    height: 150px;
+    border-radius: 50%;   /* Rendre l'image ronde */
+    object-fit: cover;    /* S'assurer que l'image remplit le cercle sans se déformer */
+    border: 3px solid #ddd; /* Optionnel: ajouter une bordure */
+    margin-left: auto;    /* Centrer l'image si le parent n'est pas déjà centré */
+    margin-right: auto;
+}
